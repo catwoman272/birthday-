@@ -88,8 +88,8 @@ button {
 
 button:hover { transform: scale(1.1); }
 
-#celebrationImg, #celebrationVideo {
-    width: 260px;
+#celebrationVideo {
+    width: 400px;
     margin-top: 20px;
     transform: scale(0);
     opacity: 0;
@@ -97,7 +97,7 @@ button:hover { transform: scale(1.1); }
     z-index: 2;
 }
 
-#celebrationImg.show, #celebrationVideo.show {
+#celebrationVideo.show {
     transform: scale(1);
     opacity: 1;
 }
@@ -121,11 +121,8 @@ button:hover { transform: scale(1.1); }
 
 <div id="celebration">
     <h1 id="greeting"></h1>
-    <img id="celebrationImg"
-    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExa204aDQ0M2UzMGdkem1iZnRjdWd1OGE0c293ZGFhNG0xZDV2Y2ZkdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Yle9Yz9izeVRyiwavn/giphy.gif"
-    alt="Love Celebration" />
     
-    <!-- الفيديو -->
+    <!-- الفيديو المحلي -->
     <video id="celebrationVideo" width="400" controls>
       <source src="celebration.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
@@ -141,7 +138,6 @@ function createFallingHeart() {
     heart.style.fontSize = (15 + Math.random() * 30) + "px";
     heart.style.animationDuration = (3 + Math.random() * 5) + "s";
     document.body.appendChild(heart);
-
     setTimeout(() => { heart.remove(); }, 8000);
 }
 setInterval(createFallingHeart, 200);
@@ -163,9 +159,6 @@ function rightAnswer(){
     }());
 
     setTimeout(function(){
-        document.getElementById("celebrationImg").classList.add("show");
-
-        // عرض الفيديو بعد الصورة
         const video = document.getElementById("celebrationVideo");
         video.classList.add("show");
         video.play();
