@@ -106,8 +106,6 @@ button:hover { transform: scale(1.1); }
 
 <body>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 <div id="questionBox">
     <div class="nameTag">Yehia 💖</div>
     <h2>One Important Question 😌❤️</h2>
@@ -122,7 +120,7 @@ button:hover { transform: scale(1.1); }
 <div id="celebration">
     <h1 id="greeting"></h1>
     
-    <!-- الفيديو المحلي -->
+    <!-- الفيديو فقط -->
     <video id="celebrationVideo" width="400" controls>
       <source src="celebration.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
@@ -148,15 +146,6 @@ function rightAnswer(){
 
     document.getElementById("greeting").innerHTML =
         "You chose perfectly 😌✨<br>Valentine's Day for me is your birthday. Happy birthday, and may you always be with me in the past, present, and future ❤️❤️";
-
-    var duration = 3 * 1000;
-    var end = Date.now() + duration;
-
-    (function frame() {
-        confetti({ particleCount: 7, angle: 60, spread: 70, origin: { x: 0 } });
-        confetti({ particleCount: 7, angle: 120, spread: 70, origin: { x: 1 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
-    }());
 
     setTimeout(function(){
         const video = document.getElementById("celebrationVideo");
