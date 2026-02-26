@@ -22,13 +22,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.nameTag {
-    font-size: 38px;
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: white;
-}
-
 .centerBox {
     display: flex;
     justify-content: center;
@@ -39,7 +32,29 @@ body {
     text-align: center;
 }
 
-h1, h2 {
+.topImage {
+    width: 230px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    animation: floatImage 3s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+
+.nameTag {
+    font-size: 38px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+h1 {
     background: rgba(0,0,0,0.3);
     padding: 20px 35px;
     border-radius: 20px;
@@ -57,7 +72,6 @@ button {
 
 button:hover { transform: scale(1.1); }
 
-/* أنيميشن زر Next */
 #nextBtn {
     opacity: 0;
     transform: scale(0.5);
@@ -66,7 +80,6 @@ button:hover { transform: scale(1.1); }
     box-shadow: 0 0 0px rgba(255,255,255,0);
 }
 
-/* لما يظهر */
 #nextBtn.show {
     animation: romanticAppear 1s ease forwards, pulseGlow 2s infinite 1s;
 }
@@ -82,7 +95,7 @@ button:hover { transform: scale(1.1); }
     100% { box-shadow: 0 0 5px #fff; }
 }
 
-/* الفيديو */
+
 #celebrationVideo {
     width: 400px;
     display: none;
@@ -96,7 +109,6 @@ button:hover { transform: scale(1.1); }
     opacity: 1;
 }
 
-/* مطر القلوب */
 .falling-heart {
     position: fixed;
     top: -20px;
@@ -117,9 +129,15 @@ button:hover { transform: scale(1.1); }
 
 <body>
 
+
 <div id="questionBox" class="centerBox">
-    <div class="nameTag">Yehia 💖</div>
-    <h2>One Important Question 😌❤️</h2>
+    
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjFpamdxcW55Z3hxenF2MXlpY2YxNjJvODR0ajYyangyODVtdmdsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5oqyfUy11JPUcBNMHo/giphy.gif" 
+         class="topImage">
+
+    <div class="nameTag">Yehia❤️</div>
+
+    <!-- السؤال مباشرة -->
     <h1>Will you be in my future life? 💍✨</h1>
 
     <div>
@@ -128,11 +146,13 @@ button:hover { transform: scale(1.1); }
     </div>
 </div>
 
+<!-- الرسالة -->
 <div id="messageBox" class="centerBox" style="display:none;">
     <h1 id="greeting"></h1>
     <button id="nextBtn" onclick="showVideo()">Next ➡️</button>
 </div>
 
+<!-- الفيديو -->
 <div id="videoBox" class="centerBox" style="display:none;">
     <video id="celebrationVideo" controls>
         <source src="celebration.mp4" type="video/mp4">
@@ -160,9 +180,8 @@ function rightAnswer(){
     document.getElementById("messageBox").style.display = "flex";
 
     document.getElementById("greeting").innerHTML =
-        "You chose perfectly 😌✨<br><br>Valentine's Day for me is your birthday.<br><br>Happy birthday, and may you always be with me in the past, present, and future ❤️❤️";
+        "Your birthday is my true Valentine's Day. 💖<br><br>Happy Birthday to my forever — yesterday, today, and always. ❤️";
 
-    // إظهار زر Next بأنيميشن
     const nextBtn = document.getElementById("nextBtn");
     nextBtn.classList.add("show");
 }
