@@ -22,6 +22,81 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+.nameTag {
+    font-size: 38px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.centerBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+h1, h2 {
+    background: rgba(0,0,0,0.3);
+    padding: 20px 35px;
+    border-radius: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover { transform: scale(1.1); }
+
+/* أنيميشن زر Next */
+#nextBtn {
+    opacity: 0;
+    transform: scale(0.5);
+    background: linear-gradient(45deg, #ff4d6d, #ff85a2);
+    color: white;
+    box-shadow: 0 0 0px rgba(255,255,255,0);
+}
+
+/* لما يظهر */
+#nextBtn.show {
+    animation: romanticAppear 1s ease forwards, pulseGlow 2s infinite 1s;
+}
+
+@keyframes romanticAppear {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px #fff; }
+    50% { box-shadow: 0 0 25px #fff; }
+    100% { box-shadow: 0 0 5px #fff; }
+}
+
+/* الفيديو */
+#celebrationVideo {
+    width: 400px;
+    display: none;
+    transform: scale(0);
+    opacity: 0;
+    transition: 1s ease;
+}
+
+#celebrationVideo.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* مطر القلوب */
 .falling-heart {
     position: fixed;
     top: -20px;
@@ -37,76 +112,12 @@ body {
         opacity: 0.3;
     }
 }
-
-.nameTag {
-    font-size: 38px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: white;
-    animation: slideGlow 2s ease-out forwards;
-    opacity: 0;
-    position: relative;
-    z-index: 2;
-}
-
-@keyframes slideGlow {
-    0% { transform: translateY(-100px) scale(0.5); opacity: 0; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-#questionBox, #celebration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    color: white;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-}
-
-#celebration { display: none; }
-
-h1, h2 {
-    background: rgba(0,0,0,0.3);
-    padding: 20px 35px;
-    border-radius: 20px;
-    z-index: 2;
-}
-
-button {
-    padding: 12px 25px;
-    font-size: 20px;
-    margin: 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 2;
-}
-
-button:hover { transform: scale(1.1); }
-
-#celebrationVideo {
-    width: 400px;
-    margin-top: 20px;
-    transform: scale(0);
-    opacity: 0;
-    transition: 1s ease;
-    z-index: 2;
-}
-
-#celebrationVideo.show {
-    transform: scale(1);
-    opacity: 1;
-}
 </style>
 </head>
 
 <body>
 
-<div id="questionBox">
+<div id="questionBox" class="centerBox">
     <div class="nameTag">Yehia 💖</div>
     <h2>One Important Question 😌❤️</h2>
     <h1>Will you be in my future life? 💍✨</h1>
@@ -117,17 +128,22 @@ button:hover { transform: scale(1.1); }
     </div>
 </div>
 
-<div id="celebration">
+<div id="messageBox" class="centerBox" style="display:none;">
     <h1 id="greeting"></h1>
-    
-    <!-- الفيديو فقط -->
-    <video id="celebrationVideo" width="400" controls>
-      <source src="celebration.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
+    <button id="nextBtn" onclick="showVideo()">Next ➡️</button>
+</div>
+
+<div id="videoBox" class="centerBox" style="display:none;">
+    <video id="celebrationVideo" controls>
+        <source src="celebration.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
     </video>
 </div>
 
 <script>
+
+let heartInterval = null;
+
 function createFallingHeart() {
     const heart = document.createElement("div");
     heart.classList.add("falling-heart");
@@ -138,21 +154,34 @@ function createFallingHeart() {
     document.body.appendChild(heart);
     setTimeout(() => { heart.remove(); }, 8000);
 }
-setInterval(createFallingHeart, 200);
 
 function rightAnswer(){
     document.getElementById("questionBox").style.display = "none";
-    document.getElementById("celebration").style.display = "flex";
+    document.getElementById("messageBox").style.display = "flex";
 
     document.getElementById("greeting").innerHTML =
-        "You chose perfectly 😌✨<br>Valentine's Day for me is your birthday. Happy birthday, and may you always be with me in the past, present, and future ❤️❤️";
+        "You chose perfectly 😌✨<br><br>Valentine's Day for me is your birthday.<br><br>Happy birthday, and may you always be with me in the past, present, and future ❤️❤️";
 
-    setTimeout(function(){
-        const video = document.getElementById("celebrationVideo");
-        video.classList.add("show");
-        video.play();
-    }, 500);
+    // إظهار زر Next بأنيميشن
+    const nextBtn = document.getElementById("nextBtn");
+    nextBtn.classList.add("show");
 }
+
+function showVideo(){
+    document.getElementById("messageBox").style.display = "none";
+    document.getElementById("videoBox").style.display = "flex";
+
+    const video = document.getElementById("celebrationVideo");
+    video.style.display = "block";
+    video.classList.add("show");
+    video.play();
+
+    heartInterval = setInterval(createFallingHeart, 200);
+}
+
+document.getElementById("celebrationVideo").addEventListener("ended", function(){
+    clearInterval(heartInterval);
+});
 
 var escapeBtn = document.getElementById("escapeBtn");
 escapeBtn.addEventListener("mouseover", function(){
@@ -162,6 +191,7 @@ escapeBtn.addEventListener("mouseover", function(){
     escapeBtn.style.left = randomX + "px";
     escapeBtn.style.top = randomY + "px";
 });
+
 </script>
 
 </body>
