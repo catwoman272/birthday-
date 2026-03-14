@@ -2,88 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Important Question</title>
+<title>...</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:black;
 height:100vh;
-overflow:hidden;
-color:white;
-}
-
-.centerBox{
+background:black;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-flex-direction:column;
+font-family:Arial, sans-serif;
+color:white;
 text-align:center;
 }
 
-.topImage{
-width:230px;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 0 20px rgba(255,255,255,0.2);
-}
-
-h1{
-background:rgba(255,255,255,0.05);
-padding:20px 35px;
-border-radius:20px;
-}
-
-button{
-padding:12px 25px;
-font-size:20px;
-margin:15px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-}
-
-#nextBtn{
+.message{
+font-size:40px;
 opacity:0;
-transform:scale(0.5);
-background:#444;
-color:white;
+animation:fadeIn 3s forwards;
 }
 
-#nextBtn.show{
-opacity:1;
-transform:scale(1);
-transition:1s;
-}
-
-#celebrationVideo{
-width:400px;
-display:none;
-}
-
-.falling-heart{
-position:fixed;
-top:-20px;
-font-size:20px;
-animation:fall linear forwards;
-opacity:0.9;
-z-index:1;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh);
-opacity:0.3;
-}
+@keyframes fadeIn{
+0%{opacity:0;}
+100%{opacity:1;}
 }
 
 </style>
@@ -91,89 +34,9 @@ opacity:0.3;
 
 <body>
 
-<div id="questionBox" class="centerBox">
-
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjFpamdxcW55Z3hxenF2MXlpY2YxNjJvODR0ajYyangyODVtdmdsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5oqyfUy11JPUcBNMHo/giphy.gif" class="topImage">
-
-<h1>Will you be my valentine?</h1>
-
-<div>
-<button onclick="rightAnswer()">Yes ❤️</button>
-<button id="escapeBtn">No 😏</button>
+<div class="message">
+The owner of this code is no longer here.
 </div>
-
-</div>
-
-<div id="messageBox" class="centerBox" style="display:none;">
-<h1 id="greeting"></h1>
-<button id="nextBtn" onclick="showVideo()">Next ➡️</button>
-</div>
-
-<div id="videoBox" class="centerBox" style="display:none;">
-<video id="celebrationVideo" controls>
-<source src="celebration.mp4" type="video/mp4">
-</video>
-</div>
-
-<script>
-
-let heartInterval=null;
-
-function createFallingHeart(){
-const heart=document.createElement("div");
-heart.classList.add("falling-heart");
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(15+Math.random()*30)+"px";
-heart.style.animationDuration=(3+Math.random()*5)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>{heart.remove();},8000);
-}
-
-function rightAnswer(){
-
-document.getElementById("questionBox").style.display="none";
-document.getElementById("messageBox").style.display="flex";
-
-document.getElementById("greeting").innerHTML=
-"The owner of this code is no longer here. 💔";
-
-const nextBtn=document.getElementById("nextBtn");
-nextBtn.classList.add("show");
-
-}
-
-function showVideo(){
-
-document.getElementById("messageBox").style.display="none";
-document.getElementById("videoBox").style.display="flex";
-
-const video=document.getElementById("celebrationVideo");
-video.style.display="block";
-video.play();
-
-heartInterval=setInterval(createFallingHeart,200);
-
-}
-
-document.getElementById("celebrationVideo").addEventListener("ended",function(){
-clearInterval(heartInterval);
-});
-
-var escapeBtn=document.getElementById("escapeBtn");
-
-escapeBtn.addEventListener("mouseover",function(){
-
-var randomX=Math.floor(Math.random()*(window.innerWidth-100));
-var randomY=Math.floor(Math.random()*(window.innerHeight-50));
-
-escapeBtn.style.position="absolute";
-escapeBtn.style.left=randomX+"px";
-escapeBtn.style.top=randomY+"px";
-
-});
-
-</script>
 
 </body>
 </html>
