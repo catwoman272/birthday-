@@ -3,217 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Important Question 💍</title>
+<title>Important Question</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff4d6d, #ff85a2);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-    height: 100vh;
-    overflow: hidden;
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:black;
+height:100vh;
+overflow:hidden;
+color:white;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.centerBox{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+text-align:center;
 }
 
-.centerBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    color: white;
-    text-align: center;
+.topImage{
+width:230px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
-.topImage {
-    width: 230px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 25px rgba(255,255,255,0.6);
-    animation: floatImage 3s ease-in-out infinite;
+h1{
+background:rgba(255,255,255,0.05);
+padding:20px 35px;
+border-radius:20px;
 }
 
-@keyframes floatImage {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px); }
+button{
+padding:12px 25px;
+font-size:20px;
+margin:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
 }
 
-
-.nameTag {
-    font-size: 38px;
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: white;
+button:hover{
+transform:scale(1.1);
 }
 
-h1 {
-    background: rgba(0,0,0,0.3);
-    padding: 20px 35px;
-    border-radius: 20px;
+#nextBtn{
+opacity:0;
+transform:scale(0.5);
+background:#444;
+color:white;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 20px;
-    margin: 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+#nextBtn.show{
+opacity:1;
+transform:scale(1);
+transition:1s;
 }
 
-button:hover { transform: scale(1.1); }
-
-#nextBtn {
-    opacity: 0;
-    transform: scale(0.5);
-    background: linear-gradient(45deg, #ff4d6d, #ff85a2);
-    color: white;
-    box-shadow: 0 0 0px rgba(255,255,255,0);
+#celebrationVideo{
+width:400px;
+display:none;
 }
 
-#nextBtn.show {
-    animation: romanticAppear 1s ease forwards, pulseGlow 2s infinite 1s;
+.falling-heart{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear forwards;
+opacity:0.9;
+z-index:1;
 }
 
-@keyframes romanticAppear {
-    0% { opacity: 0; transform: scale(0.5); }
-    100% { opacity: 1; transform: scale(1); }
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0.3;
+}
 }
 
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 5px #fff; }
-    50% { box-shadow: 0 0 25px #fff; }
-    100% { box-shadow: 0 0 5px #fff; }
-}
-
-
-#celebrationVideo {
-    width: 400px;
-    display: none;
-    transform: scale(0);
-    opacity: 0;
-    transition: 1s ease;
-}
-
-#celebrationVideo.show {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.falling-heart {
-    position: fixed;
-    top: -20px;
-    font-size: 20px;
-    animation: fall linear forwards;
-    opacity: 0.9;
-    z-index: 1;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-        opacity: 0.3;
-    }
-}
 </style>
 </head>
 
 <body>
 
-
 <div id="questionBox" class="centerBox">
-    
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjFpamdxcW55Z3hxenF2MXlpY2YxNjJvODR0ajYyangyODVtdmdsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5oqyfUy11JPUcBNMHo/giphy.gif" 
-         class="topImage">
 
-    <div class="nameTag">Yehia❤️</div>
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjFpamdxcW55Z3hxenF2MXlpY2YxNjJvODR0ajYyangyODVtdmdsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5oqyfUy11JPUcBNMHo/giphy.gif" class="topImage">
 
-    <!-- السؤال مباشرة -->
-    <h1>Will you be my valentine? </h1>
+<h1>Will you be my valentine?</h1>
 
-    <div>
-        <button onclick="rightAnswer()">Yes ❤️</button>
-        <button id="escapeBtn">No 😏</button>
-    </div>
+<div>
+<button onclick="rightAnswer()">Yes ❤️</button>
+<button id="escapeBtn">No 😏</button>
 </div>
 
-<!-- الرسالة -->
+</div>
+
 <div id="messageBox" class="centerBox" style="display:none;">
-    <h1 id="greeting"></h1>
-    <button id="nextBtn" onclick="showVideo()">Next ➡️</button>
+<h1 id="greeting"></h1>
+<button id="nextBtn" onclick="showVideo()">Next ➡️</button>
 </div>
 
-<!-- الفيديو -->
 <div id="videoBox" class="centerBox" style="display:none;">
-    <video id="celebrationVideo" controls>
-        <source src="celebration.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+<video id="celebrationVideo" controls>
+<source src="celebration.mp4" type="video/mp4">
+</video>
 </div>
 
 <script>
 
-let heartInterval = null;
+let heartInterval=null;
 
-function createFallingHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("falling-heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (15 + Math.random() * 30) + "px";
-    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 8000);
+function createFallingHeart(){
+const heart=document.createElement("div");
+heart.classList.add("falling-heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*30)+"px";
+heart.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},8000);
 }
 
 function rightAnswer(){
-    document.getElementById("questionBox").style.display = "none";
-    document.getElementById("messageBox").style.display = "flex";
 
-    document.getElementById("greeting").innerHTML =
-        "Your birthday is my true Valentine's Day. 💖<br><br>Happy Birthday to my forever — yesterday, today, and always. ❤️";
+document.getElementById("questionBox").style.display="none";
+document.getElementById("messageBox").style.display="flex";
 
-    const nextBtn = document.getElementById("nextBtn");
-    nextBtn.classList.add("show");
+document.getElementById("greeting").innerHTML=
+"The owner of this code is no longer here. 💔";
+
+const nextBtn=document.getElementById("nextBtn");
+nextBtn.classList.add("show");
+
 }
 
 function showVideo(){
-    document.getElementById("messageBox").style.display = "none";
-    document.getElementById("videoBox").style.display = "flex";
 
-    const video = document.getElementById("celebrationVideo");
-    video.style.display = "block";
-    video.classList.add("show");
-    video.play();
+document.getElementById("messageBox").style.display="none";
+document.getElementById("videoBox").style.display="flex";
 
-    heartInterval = setInterval(createFallingHeart, 200);
+const video=document.getElementById("celebrationVideo");
+video.style.display="block";
+video.play();
+
+heartInterval=setInterval(createFallingHeart,200);
+
 }
 
-document.getElementById("celebrationVideo").addEventListener("ended", function(){
-    clearInterval(heartInterval);
+document.getElementById("celebrationVideo").addEventListener("ended",function(){
+clearInterval(heartInterval);
 });
 
-var escapeBtn = document.getElementById("escapeBtn");
-escapeBtn.addEventListener("mouseover", function(){
-    var randomX = Math.floor(Math.random() * (window.innerWidth - 100));
-    var randomY = Math.floor(Math.random() * (window.innerHeight - 50));
-    escapeBtn.style.position = "absolute";
-    escapeBtn.style.left = randomX + "px";
-    escapeBtn.style.top = randomY + "px";
+var escapeBtn=document.getElementById("escapeBtn");
+
+escapeBtn.addEventListener("mouseover",function(){
+
+var randomX=Math.floor(Math.random()*(window.innerWidth-100));
+var randomY=Math.floor(Math.random()*(window.innerHeight-50));
+
+escapeBtn.style.position="absolute";
+escapeBtn.style.left=randomX+"px";
+escapeBtn.style.top=randomY+"px";
+
 });
 
 </script>
 
 </body>
 </html>
-
-
